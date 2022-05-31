@@ -1,0 +1,45 @@
+body {
+    font-family: sans-serif;
+    padding: 10px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#loading-box, #game-box {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center 
+}
+
+#loading-message {
+    font-size: 72px;
+}
+
+#grid div {
+    line-height: 0px;
+}
+
+#grid div img {
+    /*border: 1px solid black;*/
+    image-rendering: crisp-edges;
+}
+
+#grid div img:hover {
+    filter: brightness(50%);
+}
+
+#grid div img:active {
+    filter: brightness(1000%);
+}
+
+#win-message {
+    font-size: 144px;
+    position: absolute;
+    z-index: 99999;
+    transform: translate(0, -50%);
+
+    transition: color 0.2s linear;
+}
