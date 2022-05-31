@@ -314,6 +314,7 @@ Promise.all(assets.map(a => downloadAsset(a))).then(() => {
     gameBox.classList.remove("hidden");
 
     let battleships = new Battleships(grid);
+    // restart game when win message is displayed
     winMessage.addEventListener("click", (e) => {
         clearInterval(battleships.winInterval);
         battleships = new Battleships(grid);
