@@ -136,7 +136,11 @@ class TileElement {
 class Battleships {
     constructor(parentElem) {
         this.parentElem = parentElem;
+        this.parentElem.innerHTML = "";
+
         this.tileElements = [];
+
+        this.winInterval = null;
 
         this.running = true;
         this.ships = [];
@@ -144,6 +148,7 @@ class Battleships {
         this.previousShells = [];
 
         shotCounter.innerHTML = `Shots left: ${this.shots}`;
+        winMessage.classList.add("hidden");
 
         // gen ships
         // keep on generating ships until one that doesn't collide with the others is found
@@ -271,7 +276,7 @@ class Battleships {
         winMessage.classList.remove("hidden");
         winMessage.innerHTML = win ? "You win!!!" : "You lose";
         if(win) {
-            setInterval(() => {
+            this.winInterval = setInterval(() => {
                 winMessage.style.color = `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
             }, 500);
         }
@@ -309,4 +314,8 @@ Promise.all(assets.map(a => downloadAsset(a))).then(() => {
     gameBox.classList.remove("hidden");
 
     let battleships = new Battleships(grid);
+    winMessage.addEventListener("click", (e) => {
+        clearInterval(battleships.winInterval);
+        battleships = new Battleships(grid);
+    });
 });
